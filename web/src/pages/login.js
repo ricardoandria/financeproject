@@ -11,6 +11,7 @@ import {
   Text,
   FormErrorMessage,
   useToast,
+  Image,
 } from "@chakra-ui/react";
 import { Form, Formik } from "formik";
 import Link from "next/link";
@@ -76,6 +77,9 @@ const Login = () => {
       justify={"center"}
       bg={useColorModeValue("gray.50", "gray.800")}
     >
+      <Box width="50%" height="100vh">
+        <Image src="/images/login.jpg" alt="login" height="100vh" />
+      </Box>
       <SEO title="Se connecter" />
       <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
         <Stack align={"center"}>

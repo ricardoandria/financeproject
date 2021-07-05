@@ -20,6 +20,26 @@ class LogementController {
       fokotany,
       isAttributed,
       enceinteLieuTravail,
+      titreCISJ,
+      titreNomPropiete,
+      titreNumTitre,
+      titreSurface,
+      titreNomProprietaire,
+      titreAffectation,
+      titreCin,
+      titreCoordonneGPSX,
+      titreCoordonneGPSY,
+      infoTechLogDateSaisie,
+      infoTechLogSurfaceBatieLong,
+      infoTechLogSurfaceBatieLarg,
+      infoTechLogCloture,
+      infoTechLogPortailPrincipal,
+      infoTechLogCour,
+      infoTechLogParking,
+      infoTechLogJardin,
+      infoTechLogAnneDeConstruction,
+      infoTechLogTypesMateriauxConstruction,
+      infoTechLogTypeDeToiture,
     } = req.body;
 
     const newLogement = new Logement({
@@ -33,6 +53,26 @@ class LogementController {
       fokotany,
       isAttributed,
       enceinteLieuTravail,
+      titreCISJ,
+      titreNomPropiete,
+      titreNumTitre,
+      titreSurface,
+      titreNomProprietaire,
+      titreAffectation,
+      titreCin,
+      titreCoordonneGPSX,
+      titreCoordonneGPSY,
+      infoTechLogDateSaisie,
+      infoTechLogSurfaceBatieLong,
+      infoTechLogSurfaceBatieLarg,
+      infoTechLogCloture,
+      infoTechLogPortailPrincipal,
+      infoTechLogCour,
+      infoTechLogParking,
+      infoTechLogJardin,
+      infoTechLogAnneDeConstruction,
+      infoTechLogTypesMateriauxConstruction,
+      infoTechLogTypeDeToiture,
     });
 
     try {
@@ -83,6 +123,24 @@ class LogementController {
       );
     } catch (err) {
       res.status(404).send("Something went wrong");
+    }
+  };
+
+  /**
+   * @route GET api/logement/:id
+   * @param {Request} req
+   * @param {Response} res
+   */
+
+  search = async (req, res) => {
+    const { adresse } = req.params;
+    try {
+      const loge = await Logement.find({ adresse: adresse });
+      if (!loge) res.status(404).send("Logement introuvable");
+      res.status(200).send(book);
+    } catch (err) {
+      res.status(400).send("something went wrong");
+      console.log({ err });
     }
   };
 }

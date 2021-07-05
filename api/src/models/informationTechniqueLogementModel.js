@@ -1,26 +1,20 @@
 const mongoose = require("mongoose");
 
 const infoTechLogSchema = new mongoose.Schema({
-  entiteLogementId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "EntiteLogement",
-  },
   infoTechLogDateSaisie: {
     type: Date,
     required: true,
-    default: Date.now(),
   },
   infoTechLogSurfaceBatie: {
     type: String,
     required: true,
   },
   infoTechLogCloture: {
-    type: Boolean,
+    type: String,
     required: true,
-    default: false,
   },
   infoTechLogPortailPrincipal: {
-    type: Boolean,
+    type: String,
     required: true,
     default: false,
   },
@@ -29,32 +23,24 @@ const infoTechLogSchema = new mongoose.Schema({
     required: true,
   },
   infoTechLogParking: {
-    type: Boolean,
+    type: String,
     required: true,
-    default: false,
   },
   infoTechLogJardin: {
     type: String,
     required: true,
   },
   infoTechLogAnneDeConstruction: {
-    type: Boolean,
+    type: Date,
     required: true,
-    default: false,
   },
   infoTechLogTypesMateriauxConstruction: {
-    type: Boolean,
+    type: String,
     required: true,
-    default: false,
   },
   infoTechLogTypeDeToiture: {
-    type: Boolean,
+    type: String,
     required: true,
-    default: false,
-  },
-  infoTechLogNivId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Niveau",
   },
 });
 

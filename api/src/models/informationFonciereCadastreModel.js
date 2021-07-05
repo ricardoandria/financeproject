@@ -10,7 +10,7 @@ const infoFonciereCadasteSchema = mongoose.Schema({
     required: true,
   },
   InfoFoncCadastreNumParcelle: {
-    type: Number,
+    type: String,
     required: true,
   },
   InfoFoncCadastreSurface: {
@@ -22,12 +22,12 @@ const infoFonciereCadasteSchema = mongoose.Schema({
     required: true,
   },
   InfoFoncCadastreRegistre: {
-    type: Number,
+    type: String,
     required: true,
   },
   InfoFoncCadastreNumFolio: {
-    type: Number,
+    type: String,
     required: true,
   },
 });
-module.exports = mongoose.model("FociereCadastre", infoFonciereCadasteSchema);
+module.exports = mongoose.model("Cadastre", infoFonciereCadasteSchema);

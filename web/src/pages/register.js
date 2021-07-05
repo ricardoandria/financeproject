@@ -12,6 +12,7 @@ import {
   FormErrorMessage,
   Select,
   useToast,
+  Image,
 } from "@chakra-ui/react";
 import { Form, Formik } from "formik";
 import Link from "next/link";
@@ -108,14 +109,18 @@ const Register = ({ todos }) => {
 
   return (
     <Flex
+      mt="-9px"
       minH={"100vh"}
       align={"center"}
       justify={"center"}
       bg={useColorModeValue("gray.50", "gray.800")}
     >
+      <Box width="50%" height="100vh">
+        <Image src="/images/login.jpg" alt="login" height="100vh" />
+      </Box>
       <SEO title="S'inscrire" />
-      <Stack spacing={8} mx={"auto"} maxW={"6xl"} width={"2xl"} py={12} px={6}>
-        <Stack align={"center"}>
+      <Stack spacing={8} mx={"auto"} maxW={"6xl"} width={"2xl"} px={6}>
+        <Stack mt="5px" align={"center"}>
           <Heading fontSize={"3xl"}>Connectez-vous à votre compte</Heading>
           <Text fontSize={"lg"} color={"gray.600"}>
             Déjà membre?{" "}
@@ -129,7 +134,7 @@ const Register = ({ todos }) => {
           rounded={"lg"}
           bg={useColorModeValue("white", "gray.700")}
           boxShadow={"lg"}
-          p={4}
+          p={2}
         >
           <Formik
             initialValues={initialState}
@@ -300,7 +305,7 @@ const Register = ({ todos }) => {
                       }}
                       type="submit"
                     >
-                      S'inscire
+                      S'inscrire
                     </Button>
                   </Stack>
                 </Stack>

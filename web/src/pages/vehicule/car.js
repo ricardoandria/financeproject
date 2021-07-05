@@ -14,16 +14,17 @@ import { SkeletonText } from "@chakra-ui/skeleton";
 import { Tooltip } from "@chakra-ui/tooltip";
 import { DeleteIcon, EditIcon } from "@chakra-ui/icons";
 import formatDate from "../../utils/formatDate";
-import HouseModal from "../../components/modal/HouseModal";
+
 import { useState } from "react";
-import AssignModal from "../../components/modal/AssignModal";
+import AssignModalCar from "../../components/modal/AssignModalCar";
 import useSave from "../../hooks/useSave";
 import { useToast } from "@chakra-ui/toast";
 import { Input } from "@chakra-ui/input";
+import CarModal from "../../components/modal/CarModal";
 
 const cookies = new Cookies();
 
-const Housing = () => {
+const Caring = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [isUpdate, setIsUpdate] = useState(false);
   const [currentItem, setCurrentItem] = useState();
@@ -36,8 +37,8 @@ const Housing = () => {
     }),
     shallow
   );
-  const { data, error, isLoading } = useQuery("batiment", async () => {
-    const res = await fetch(`${BASE_URL}/logement/fetch`, {
+  const { data, error, isLoading } = useQuery("vehicules", async () => {
+    const res = await fetch(`${BASE_URL}/vehicule/fetch`, {
       headers: {
         "x-auth-token": cookies.get("jwt"),
       },
@@ -45,10 +46,10 @@ const Housing = () => {
     return res.json();
   });
 
-  const logementMutation = useSave(`logement/${lid}/assign`, "batiment");
+  const vehiculeMutation = useSave(`vehicule/${lid}/assign`, "vehicule");
   return (
     <Layout>
-      <SEO title="Liste des bâtiments" />
+      <SEO title="Liste des Vehicules" />
       <Box width={"100%"}>
         <Box
           width="100%"
@@ -57,7 +58,7 @@ const Housing = () => {
           alignItems="center"
         >
           <Heading as="h3" fontSize="1.5rem" color="blackAlpha.900">
-            Liste des bâtiments
+            Liste des Vehicules
           </Heading>
           <Button
             disabled={user.admin}
@@ -91,11 +92,11 @@ const Housing = () => {
           <Table variant="striped" size="lg">
             <Thead>
               <Tr>
-                <Th>Type de bâtiment</Th>
-                <Th>Localication</Th>
-                <Th>Adresse</Th>
-                <Th>Nom hôtel</Th>
-                <Th>Date d'inscription</Th>
+                <Th>Marque</Th>
+                <Th>Genre</Th>
+                <Th>Premiere Mise</Th>
+                <Th>Type</Th>
+                <Th>Date immatriculation</Th>
                 {user && user.isAdmin && <Th>Action</Th>}
               </Tr>
             </Thead>
@@ -126,11 +127,11 @@ const Housing = () => {
                 data.length > 0 &&
                 data.map((info) => (
                   <Tr key={info._id}>
-                    <Td>{info.typeBatiment}</Td>
-                    <Td>{info.localisation}</Td>
-                    <Td>{info.adresse}</Td>
-                    <Td>{info.nomHotel}</Td>
-                    <Td>{formatDate(info.createdAt)}</Td>
+                    <Td>{info.marque}</Td>
+                    <Td>{info.genre}</Td>
+                    <Td>{info.datePremiereMise}</Td>
+                    <Td>{info.type}</Td>
+                    <Td>{info.immatriculationProvisoire}</Td>
                     {user && user.isAdmin && (
                       <Td>
                         <Tooltip label="Attribuer">
@@ -160,7 +161,7 @@ const Housing = () => {
                               onClick={() => {
                                 setLid(info._id);
                                 setTimeout(() => {
-                                  logementMutation.mutate(
+                                  vehiculeMutation.mutate(
                                     { isAttributed: false },
                                     {
                                       onSuccess: () => {
@@ -224,7 +225,7 @@ const Housing = () => {
         </Box>
       </Box>
       {isOpen && (
-        <HouseModal
+        <CarModal
           isOpen={isOpen}
           onClose={onClose}
           isUpdate={isUpdate}
@@ -232,7 +233,7 @@ const Housing = () => {
         />
       )}
       {isAssignOpen && (
-        <AssignModal
+        <AssignModalCar
           isOpen={isAssignOpen}
           onClose={() => setIsAssignOpen(false)}
           lid={lid}
@@ -242,4 +243,4 @@ const Housing = () => {
   );
 };
 
-export default Housing;
+export default Caring;

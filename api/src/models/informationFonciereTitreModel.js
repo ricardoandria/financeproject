@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 
 const infoFonciereTitreSchema = new mongoose.Schema({
-  InforFoncTitreCISJ: {
-    type: Boolean,
+  InfoFoncTitreCISJ: {
+    type: String,
     required: true,
   },
   InfoFoncTitreNomPropiete: {
@@ -18,10 +18,15 @@ const infoFonciereTitreSchema = new mongoose.Schema({
     required: true,
   },
   InfoFoncTitreNomProprietaire: {
-    type: Boolean,
+    type: String,
     required: true,
   },
   InfoFoncTitreAffectation: {
+    type: Boolean,
+    required: true,
+    default: false,
+  },
+  InfoFoncTitreCin: {
     type: String,
     required: true,
   },
@@ -34,3 +39,5 @@ const infoFonciereTitreSchema = new mongoose.Schema({
     required: true,
   },
 });
+
+module.exports = mongoose.model("Titre", infoFonciereTitreSchema);

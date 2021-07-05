@@ -19,6 +19,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import useUserStore from "../../store/useUserStore";
 import { DropdownMenu } from "../menu";
+import DropdownMenuVehicule from "../menu/menuDropdownVehicule";
 
 const Navigation = () => {
   const router = useRouter();
@@ -27,7 +28,19 @@ const Navigation = () => {
     logout: state.logout,
   }));
   return (
-    <Box position="fixed" top="0" left="0" maxW="20%" width="80%" py="4" px="4">
+    <Box
+      backgroundImage="url('/images/login.jpg')"
+      backgroundRepeat="no-repeat"
+      backgroundPosition="center"
+      position="fixed"
+      top="0"
+      left="0"
+      maxW="20%"
+      width="80%"
+      py="4"
+      px="4"
+      height="100vh"
+    >
       <Stack>
         <HStack>
           <Image
@@ -93,6 +106,7 @@ const Navigation = () => {
             </Link>
           </ListItem>
           <DropdownMenu />
+          <DropdownMenuVehicule />
         </List>
       </Stack>
     </Box>

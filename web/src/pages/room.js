@@ -52,7 +52,7 @@ const Room = () => {
           <Table>
             <Thead>
               <Tr>
-                <Th>Matricule</Th>
+                <Th>Email</Th>
                 <Th>Login</Th>
                 <Th>Unité administrative</Th>
                 <Th>Contact</Th>
@@ -87,7 +87,7 @@ const Room = () => {
                 data.length > 0 &&
                 data.map((info) => (
                   <Tr key={info._id}>
-                    <Td>{info.matricule}</Td>
+                    <Td>{info.email}</Td>
                     <Td>{info.Login}</Td>
                     <Td>{info.uniteAdmin}</Td>
                     <Td>{info.telMobile}</Td>
